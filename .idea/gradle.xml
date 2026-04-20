@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/chatservice-ms" />
+        <option name="gradleJvm" value="ms-21 (2)" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/chatservice-ms" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/menuservice-ms" />
+        <option name="gradleJvm" value="ms-21 (2)" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/menuservice-ms" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/notificationservice-ms" />
+        <option name="gradleJvm" value="ms-21 (2)" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/notificationservice-ms" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/order-ms" />
+        <option name="gradleJvm" value="ms-21 (2)" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/order-ms" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/payment-ms" />
+        <option name="gradleJvm" value="ms-21 (2)" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/payment-ms" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/userservice" />
+        <option name="gradleJvm" value="ms-21 (2)" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/userservice" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: user-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/woltusers
+    username: root
+    password: 1234
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+jwt:
+  secret: mysecretkeymysecretkeymysecretkey
+
+
+services:
+  menu:
+    url: http://localhost:8082
+  order:
+    url: http://localhost:8085

@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: menu-service-ms
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/menuservice
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+#  liquibase:
+#    enabled: false
+#    change-log: classpath:db/changelog/db-changelog.yaml
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+server:
+  port: 8082
+  servlet:
+    context-path: /menu-service-ms
+
+services:
+  user:
+    url: http://localhost:8080
+  order:
+    url: http://localhost:8085
