@@ -103,4 +103,25 @@ public class UserServiceImpl implements UserService {
 
         userRepository.save(user);
     }
+
+    @Override
+    public void createCourier(RegisterRequest request) {
+        if (userRepository.findByUsername(request.username()).isPresent()) {
+            throw new RuntimeException("Username already exists");
+        }
+
+        UserEntity user = new UserEntity();
+        user.setUsername(request.username());
+        user.setEmail(request.email());
+        user.setFullName(request.fullName());
+        user.setPhoneNumber(request.phoneNumber());
+        user.setPassword(passwordEncoder.encode(request.password()));
+        user.setRole(Role.COURIER);
+        user.setStatus(Status.ACTIVE);
+
+        userRepository.save(user);
+
+
+
+    }
 }

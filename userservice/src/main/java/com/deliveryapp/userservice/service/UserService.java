@@ -21,4 +21,5 @@ public interface UserService {
     void deleteUser(UUID id);
 
     void createAdmin(RegisterRequest request);
+    void createCourier(RegisterRequest request);
 }

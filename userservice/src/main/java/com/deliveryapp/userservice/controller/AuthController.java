@@ -7,6 +7,7 @@ import com.deliveryapp.userservice.dto.response.AuthResponse;
 import com.deliveryapp.userservice.entity.UserEntity;
 import com.deliveryapp.userservice.service.UserAuthService;
 import com.deliveryapp.userservice.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,8 +42,13 @@ public class AuthController {
     @PostMapping("/admin/create")
     public ResponseEntity<String> createAdmin(@RequestBody RegisterRequest request) {
         userService.createAdmin(request);
-        return ResponseEntity.ok("Admin created successfully");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Admin created successfully");
+    }
 
+    @PostMapping("/courier/create")
+    public ResponseEntity<String> createCourier(@RequestBody RegisterRequest request) {
+        userService.createCourier(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Courier created successfully");
     }
 
     @PostMapping("/refresh")

@@ -57,9 +57,9 @@ public class NotificationController {
     }
 
     private static UUID requireUserId(Authentication authentication) {
-        if (authentication == null || !(authentication.getPrincipal() instanceof UUID userId)) {
+        if (authentication == null || authentication.getPrincipal() == null) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "JWT ilə daxil olun.");
         }
-        return userId;
+        return UUID.fromString(authentication.getPrincipal().toString());
     }
 }

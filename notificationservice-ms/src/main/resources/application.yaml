@@ -33,10 +33,3 @@ server:
   servlet:
     context-path: /notificationservice-ms
 
-app:
-  jwt:
-    secret: "notificationservice-dev-secret-key-min-32-chars!!"
-    expiration-ms: 86400000
-
-  security:
-    internal-token: ${APP_INTERNAL_TOKEN:}

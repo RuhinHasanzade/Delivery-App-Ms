@@ -1,5 +1,7 @@
 package com.deliveryapp.userservice.dto.response;
 
+import com.deliveryapp.userservice.entity.Role;
+
 import java.util.UUID;
 
 
