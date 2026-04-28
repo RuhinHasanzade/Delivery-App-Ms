@@ -54,7 +54,8 @@ public class UserServiceImpl implements UserService {
                 userEntity.getId(),
                 userEntity.getFullName(),
                 userEntity.getUsername(),
-                userEntity.getEmail()
+                userEntity.getEmail(),
+                userEntity.getRole()
         );
 
 

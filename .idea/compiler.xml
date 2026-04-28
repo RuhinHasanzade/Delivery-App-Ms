@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="gateway-ms" target="21" />
+    </bytecodeTargetLevel>
+  </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="chatservice-ms" options="-parameters" />
       <module name="chatservice-ms.main" options="-parameters" />
       <module name="chatservice-ms.test" options="-parameters" />
+      <module name="com.deliverapp.gateway-ms.main" options="-parameters" />
+      <module name="com.deliverapp.gateway-ms.test" options="-parameters" />
+      <module name="gateway-ms" options="-parameters" />
+      <module name="gateway-ms.main" options="-parameters" />
+      <module name="gateway-ms.test" options="-parameters" />
       <module name="menuservice-ms" options="-parameters" />
       <module name="menuservice-ms.main" options="-parameters" />
       <module name="menuservice-ms.test" options="-parameters" />

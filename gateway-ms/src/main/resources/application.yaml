@@ -1,0 +1,52 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: gateway-ms
+
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: user-auth-route
+            uri: http://localhost:8080
+            predicates:
+              - Path=/api/auth/**
+
+          - id: user-route
+            uri: http://localhost:8080
+            predicates:
+              - Path=/api/users/**
+
+          - id: menu-route
+            uri: http://localhost:8082
+            predicates:
+              - Path=/api/menu/**
+            filters:
+              - RewritePath=/api/menu/(?<segment>.*), /menu-service-ms/api/${segment}
+
+          - id: order-route
+            uri: http://localhost:8085
+            predicates:
+              - Path=/api/orders/**
+
+          - id: payment-route
+            uri: http://localhost:8086
+            predicates:
+              - Path=/api/payments/**
+            filters:
+              - RewritePath=/api/payments/(?<segment>.*), /payment-service-ms/api/${segment}
+
+          - id: notification-route
+            uri: http://localhost:8088
+            predicates:
+              - Path=/api/notifications/**
+            filters:
+              - RewritePath=/api/notifications/(?<segment>.*), /notificationservice-ms/api/notifications/${segment}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

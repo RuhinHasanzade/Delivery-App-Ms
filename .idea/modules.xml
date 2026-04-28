@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/deliveryApp.iml" filepath="$PROJECT_DIR$/.idea/deliveryApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/menuservice-ms.main.iml" filepath="$PROJECT_DIR$/.idea/modules/menuservice-ms.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/notificationservice-ms.main.iml" filepath="$PROJECT_DIR$/.idea/modules/notificationservice-ms.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/orderms.main.iml" filepath="$PROJECT_DIR$/.idea/modules/orderms.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/payment-ms.main.iml" filepath="$PROJECT_DIR$/.idea/modules/payment-ms.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/payment-ms.test.iml" filepath="$PROJECT_DIR$/.idea/modules/payment-ms.test.iml" />
