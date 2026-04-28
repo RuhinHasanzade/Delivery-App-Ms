@@ -1,8 +1,10 @@
 package az.woltclone.orderms.service.impl;
 
 import az.woltclone.orderms.client.MenuClient;
+import az.woltclone.orderms.client.NotificationClient;
 import az.woltclone.orderms.dto.common.ResultDto;
 import az.woltclone.orderms.dto.menu.FoodDto;
+import az.woltclone.orderms.dto.notification.CreateNotificationRequest;
 import az.woltclone.orderms.dto.order.CreateOrderRequest;
 import az.woltclone.orderms.dto.order.OrderItemRequest;
 import az.woltclone.orderms.dto.order.OrderItemResponse;
@@ -25,6 +27,7 @@ import java.util.UUID;
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final MenuClient menuClient;
+    private final NotificationClient notificationClient;
     @Override
     public OrderResponse createOrder(UUID userId, CreateOrderRequest request) {
         List<OrderItem> items = request.getItems()
@@ -51,6 +54,16 @@ public class OrderServiceImpl implements OrderService {
         order.setItems(items);
 
         Order savedOrder = orderRepository.save(order);
+
+
+        notificationClient.createNotification(
+                new CreateNotificationRequest(
+                        userId,
+                        "Sifariş yaradıldı",
+                        "Sifarişiniz uğurla yaradıldı. Order ID: " + savedOrder.getId()
+                )
+
+        );
 
         return mapToResponse(savedOrder);
     }
