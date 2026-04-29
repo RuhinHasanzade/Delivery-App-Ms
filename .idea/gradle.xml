@@ -22,15 +22,6 @@
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
-        <option name="externalProjectPath" value="$PROJECT_DIR$/gateway-ms/gateway-ms" />
-        <option name="gradleJvm" value="ms-21 (2)" />
-        <option name="modules">
-          <set>
-            <option value="$PROJECT_DIR$/gateway-ms/gateway-ms" />
-          </set>
-        </option>
-      </GradleProjectSettings>
-      <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/menuservice-ms" />
         <option name="gradleJvm" value="ms-21 (2)" />
         <option name="modules">
