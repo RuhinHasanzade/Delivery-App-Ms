@@ -55,6 +55,22 @@ public class OrderController {
                 .build();
     }
 
+    @GetMapping("/courier/my")
+//    @PreAuthorize("hasRole('COURIER')")
+    public ResultDto<List<OrderResponse>> getCourierOrders(Authentication authentication) {
+
+        UUID courierId = UUID.fromString(authentication.getName());
+
+        List<OrderResponse> response = orderService.getCourierOrders(courierId);
+
+        return ResultDto.<List<OrderResponse>>builder()
+                .success(true)
+                .message("Courier orders fetched successfully")
+                .data(response)
+                .errors(Collections.emptyList())
+                .build();
+    }
+
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN','CUSTOMER','COURIER')")
     public ResultDto<OrderResponse> getOrderById(@PathVariable UUID id) {

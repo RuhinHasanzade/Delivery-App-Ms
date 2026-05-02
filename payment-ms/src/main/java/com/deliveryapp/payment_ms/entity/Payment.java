@@ -2,6 +2,8 @@ package com.deliveryapp.payment_ms.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -18,13 +20,16 @@ public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(nullable = false, updatable = false)
+    @JdbcTypeCode(SqlTypes.CHAR)
+    @Column(nullable = false, updatable = false, columnDefinition = "char(36)")
     private UUID id;
 
-    @Column(nullable = false, columnDefinition = "varchar(36)")
+    @JdbcTypeCode(SqlTypes.CHAR)
+    @Column(nullable = false, columnDefinition = "char(36)")
     private UUID orderId;
 
-    @Column(nullable = false, columnDefinition = "varchar(36)")
+    @JdbcTypeCode(SqlTypes.CHAR)
+    @Column(nullable = false, columnDefinition = "char(36)")
     private UUID userId;
 
     @Column(nullable = false, precision = 12, scale = 2)

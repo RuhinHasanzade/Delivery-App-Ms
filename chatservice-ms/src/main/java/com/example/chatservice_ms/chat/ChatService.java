@@ -67,23 +67,35 @@ public class ChatService {
     }
 
     private void ensureAccess(AuthenticatedUser user, OrderChatContext order) {
-        if (user.role() == UserRole.USER && user.userId().equals(order.userId())) {
+        if (user.role() == UserRole.CUSTOMER && user.userId().equals(order.userId())) {
             return;
         }
+
         if (user.role() == UserRole.COURIER && user.userId().equals(order.courierId())) {
             return;
         }
-        throw new ApiException(HttpStatus.FORBIDDEN, "CHAT_ACCESS_DENIED", "You are not allowed to access this order chat.");
+
+        throw new ApiException(
+                HttpStatus.FORBIDDEN,
+                "CHAT_ACCESS_DENIED",
+                "You are not allowed to access this order chat."
+        );
     }
 
     private String resolveReceiverId(AuthenticatedUser sender, OrderChatContext order) {
-        if (sender.role() == UserRole.USER) {
+        if (sender.role() == UserRole.CUSTOMER) {
             return order.courierId();
         }
+
         if (sender.role() == UserRole.COURIER) {
             return order.userId();
         }
-        throw new ApiException(HttpStatus.FORBIDDEN, "CHAT_ACCESS_DENIED", "Unsupported sender role.");
+
+        throw new ApiException(
+                HttpStatus.FORBIDDEN,
+                "CHAT_ACCESS_DENIED",
+                "Unsupported sender role."
+        );
     }
 }
 

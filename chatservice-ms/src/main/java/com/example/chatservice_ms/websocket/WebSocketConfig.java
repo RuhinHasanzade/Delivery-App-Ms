@@ -49,7 +49,11 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                 if (accessor != null && StompCommand.CONNECT.equals(accessor.getCommand())) {
                     String authorization = getAuthorizationHeader(accessor);
                     AuthenticatedUser user = jwtAuthService.authenticateBearerHeader(authorization);
-                    accessor.setUser(new StompPrincipal(user.userId()));
+                    accessor.setUser(new StompPrincipal(
+                            user.userId(),
+                            user.role().name(),
+                            authorization
+                    ));
                 }
                 return message;
             }

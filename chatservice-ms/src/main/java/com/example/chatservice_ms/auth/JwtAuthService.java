@@ -44,7 +44,7 @@ public class JwtAuthService {
             verifyHs256Signature(parts[0], parts[1], parts[2]);
             JsonNode payload = decodePayload(parts[1]);
 
-            String userId = UuidStrings.requireUuidSubClaim(textValue(payload, "sub"));
+            String userId = UuidStrings.normalizeRequired(textValue(payload, "userId"), "userId");
             String roleValue = textValue(payload, "role");
             if (roleValue == null || roleValue.isBlank()) {
                 throw new ApiException(HttpStatus.UNAUTHORIZED, "UNAUTHORIZED", "Token claims are missing.");

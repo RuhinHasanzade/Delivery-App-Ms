@@ -14,6 +14,13 @@ spring:
             predicates:
               - Path=/api/auth/**
 
+          - id: chat-api-route
+            uri: http://localhost:8089
+            predicates:
+              - Path=/api/chats/**
+            filters:
+              - RewritePath=/api/chats/(?<segment>.*), /chatservice-ms/api/chats/${segment}
+
           - id: user-route
             uri: http://localhost:8080
             predicates:
