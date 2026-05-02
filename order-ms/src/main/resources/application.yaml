@@ -20,7 +20,7 @@ server:
 
 services:
   menu:
-    url: http://localhost:8082/menu-service-ms
+    url: http://localhost:8082/
   user:
     url: http://localhost:8080
   notification:

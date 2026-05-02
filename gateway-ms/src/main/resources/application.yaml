@@ -23,8 +23,11 @@ spring:
             uri: http://localhost:8082
             predicates:
               - Path=/api/menu/**
-            filters:
-              - RewritePath=/api/menu/(?<segment>.*), /menu-service-ms/api/${segment}
+
+          - id: categories-route
+            uri: http://localhost:8082
+            predicates:
+              - Path=/api/menu/categories/**
 
           - id: order-route
             uri: http://localhost:8085

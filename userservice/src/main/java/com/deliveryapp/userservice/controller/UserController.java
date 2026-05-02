@@ -25,6 +25,18 @@ public class UserController {
         this.userService = userService;
     }
 
+
+    @GetMapping("/couriers")
+    public ResponseEntity<SuccessDto<List<UserResponse>>> getAllCouriers() {
+
+        List<UserResponse> couriers = userService.getAllCourier();
+
+        SuccessDto<List<UserResponse>> response =
+                new SuccessDto<>("Success", couriers);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/all-users")
     public ResponseEntity<SuccessDto<List<UserResponse>>> getAllUsers() {
@@ -37,6 +49,8 @@ public class UserController {
         return new ResponseEntity<>(response, HttpStatus.OK);
 
     }
+
+
 
     @GetMapping("/{id}")
     public ResponseEntity<SuccessDto<UserResponse>> getUserById(@PathVariable UUID id) {
@@ -65,5 +79,7 @@ public class UserController {
         userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
 
 }

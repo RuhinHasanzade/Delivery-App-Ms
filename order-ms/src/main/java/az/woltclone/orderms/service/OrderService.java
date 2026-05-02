@@ -13,5 +13,6 @@ public interface OrderService {
     OrderResponse getOrderById(UUID orderId);
     List<OrderResponse> getAllOrders();
     OrderResponse updateStatus(UUID orderId, OrderStatus newStatus);
+    List<OrderResponse> getCourierOrders(UUID courierId);
 
 }

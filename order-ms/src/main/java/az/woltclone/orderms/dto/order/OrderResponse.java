@@ -21,7 +21,6 @@ public class OrderResponse {
     private String deliveryAddress;
     private Double deliveryLat;
     private Double deliveryLng;
-    private Double deliveryDistanceKm;
     private OrderStatus status;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

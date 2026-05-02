@@ -10,6 +10,6 @@ import java.util.UUID;
 
 @FeignClient(name = "menu-service",url = "${services.menu.url}")
 public interface MenuClient {
-    @GetMapping("/api/foods/{id}")
+    @GetMapping("/api/menu/foods/{id}")
     ResultDto<FoodDto> getFoodById(@PathVariable Long id);
 }

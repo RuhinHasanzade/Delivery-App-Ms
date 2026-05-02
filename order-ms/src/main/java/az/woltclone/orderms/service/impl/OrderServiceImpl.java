@@ -2,6 +2,7 @@ package az.woltclone.orderms.service.impl;
 
 import az.woltclone.orderms.client.MenuClient;
 import az.woltclone.orderms.client.NotificationClient;
+import az.woltclone.orderms.client.UserClient;
 import az.woltclone.orderms.dto.common.ResultDto;
 import az.woltclone.orderms.dto.menu.FoodDto;
 import az.woltclone.orderms.dto.notification.CreateNotificationRequest;
@@ -28,6 +29,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final MenuClient menuClient;
     private final NotificationClient notificationClient;
+    private final UserClient userClient;
     @Override
     public OrderResponse createOrder(UUID userId, CreateOrderRequest request) {
         List<OrderItem> items = request.getItems()
@@ -39,9 +41,22 @@ public class OrderServiceImpl implements OrderService {
                 .map(OrderItem::getLineTotal)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
+        ResultDto<List<az.woltclone.orderms.dto.user.UserResponse>> courierResult =
+                userClient.getAllCouriers();
+
+        if (courierResult == null
+                || courierResult.getData() == null
+                || courierResult.getData().isEmpty()) {
+            throw new RuntimeException("Courier tapilmadi");
+        }
+
+        UUID courierId = courierResult.getData()
+                .get(0)
+                .uuid();
+
         Order order = Order.builder()
                 .userId(userId)
-                .courierId(null)
+                .courierId(courierId)
                 .totalAmount(totalAmount)
                 .deliveryAddress(request.getDeliveryAddress())
                 .deliveryLat(request.getDeliveryLat())
@@ -55,19 +70,16 @@ public class OrderServiceImpl implements OrderService {
 
         Order savedOrder = orderRepository.save(order);
 
-
         notificationClient.createNotification(
                 new CreateNotificationRequest(
                         userId,
                         "Sifariş yaradıldı",
                         "Sifarişiniz uğurla yaradıldı. Order ID: " + savedOrder.getId()
                 )
-
         );
 
         return mapToResponse(savedOrder);
     }
-
     @Override
     public OrderResponse updateStatus(UUID orderId, OrderStatus newStatus) {
         Order order = orderRepository.findById(orderId)
@@ -80,6 +92,14 @@ public class OrderServiceImpl implements OrderService {
         Order savedOrder = orderRepository.save(order);
 
         return mapToResponse(savedOrder);
+    }
+
+    @Override
+    public List<OrderResponse> getCourierOrders(UUID courierId) {
+        return orderRepository.findByCourierId(courierId)
+                .stream()
+                .map(this::mapToResponse)
+                .toList();
     }
 
     private void validateStatusTransition(OrderStatus current, OrderStatus next) {
@@ -173,10 +193,7 @@ public class OrderServiceImpl implements OrderService {
                 .deliveryAddress(order.getDeliveryAddress())
                 .deliveryLat(order.getDeliveryLat())
                 .deliveryLng(order.getDeliveryLng())
-                .deliveryDistanceKm(order.getDeliveryDistanceKm())
                 .status(order.getStatus())
-                .createdAt(order.getCreatedAt())
-                .updatedAt(order.getUpdatedAt())
                 .items(order.getItems()
                         .stream()
                         .map(item -> OrderItemResponse.builder()

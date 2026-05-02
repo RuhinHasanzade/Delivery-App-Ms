@@ -14,12 +14,14 @@ public interface UserService {
 
     List<UserResponse> getAllUsers();
 
+    List<UserResponse> getAllCourier();
+
+
     UserResponse getUserById(UUID id);
 
     UserResponse updateUser(UUID id, RegisterRequest request);
 
     void deleteUser(UUID id);
-
     void createAdmin(RegisterRequest request);
     void createCourier(RegisterRequest request);
 }

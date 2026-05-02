@@ -45,6 +45,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserResponse> getAllCourier() {
+
+        List<UserEntity> couriers = userRepository.findByRole(Role.COURIER);
+
+        return couriers.stream()
+                .map(user -> new UserResponse(
+                        user.getId(),
+                        user.getFullName(),
+                        user.getUsername(),
+                        user.getEmail(),
+                        user.getRole()
+                ))
+                .toList();
+    }
+    @Override
     public UserResponse getUserById(UUID id) {
 
         UserEntity userEntity = userRepository.findById(id)

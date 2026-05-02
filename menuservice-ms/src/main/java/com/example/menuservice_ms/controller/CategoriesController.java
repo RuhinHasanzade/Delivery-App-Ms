@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/categories")
+@RequestMapping("/api/menu/categories")
 public class CategoriesController {
 
     private final CategoryService categoryService;
